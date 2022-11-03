@@ -1,9 +1,11 @@
 <template>
-    <li class="list-group-item d-flex justify-content-between ">
+    <li 
+    class="list-group-item d-flex justify-content-between"
+    :class="{like: movie.like}, {favorite: movie.favorite}">
         <span class="list-group-item-label">
-            Gumbaz ostida
+            {{movie.name}}
         </span>
-        <input type="number" class="list-group-item-input" defaultValue="999">
+        <input type="number" class="list-group-item-input" :value="movie.viewers"/>
     <div class="d-flex justify-content-center align-items-center">
         <button type="button" class="btn-cookie btn-sm">
             <i class="fas fa-cookie"></i>
@@ -20,7 +22,12 @@
 </template>
 <script>
 export default {
-    
+    props: {
+        movie: {
+            type: Object,
+            required: true,
+        },
+    },
 }
 </script>
 <style scoped>
@@ -82,8 +89,7 @@ opacity: 0;
     transform: translateX(0);
 }
 .list-group-item.favorite .list-group-item-label,
-.list-group-item.favorite .list-group-item-input,
-
+.list-group-item.favorite .list-group-item-input
 {
     color: #e09f3e;
 }
