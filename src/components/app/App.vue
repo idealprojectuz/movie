@@ -1,13 +1,19 @@
 <template>
 <div class="app font-monospace">
   <div class="content">
-    <AppInfo/>
+      <AppInfo 
+      :allMoviesCount="movies.length" 
+      :favoriteMoviesCount='movies.filter(c => c.favorite).length' 
+      />
   <div class="search-panel">
     <SearchPanel/>
     <AppFilter/>
   </div>
-    <MovieList/>
-    <MovieAddForm/>
+    <MovieList 
+    :movies="movies" 
+    @onLike="onLikeHandler" 
+    />
+    <MovieAddForm @createMovie="createMovie" />
   </div>
 
 </div>
@@ -25,6 +31,47 @@ import MovieAddForm from "../movie-add-form/MovieAddForm.vue";
       AppFilter,
       MovieList,
       MovieAddForm,
+    },
+    data(){
+        return{
+        movies:[
+            {
+                id: 1,
+                name: "gumbaz ostida",
+                viewers: 822,
+                favorite: true,
+                like: true,
+            },
+            {
+                id: 2,
+                name: "Qasoskorlar",
+                viewers: 999,
+                favorite: false,
+                like: false,
+            },
+            {
+                id: 3,
+                name: "Lutsifer",
+                viewers: 822,
+                favorite: false,
+                like: true,
+            },
+        ],
+     }
+    },
+    methods:{
+      createMovie(item){
+        this.movies.push(item)
+        console.log(item)
+      },
+      onLikeHandler(id) {
+        this.movies=this.movies.map(item => {
+          if(item.id==id) {
+              item.like=!item.like
+          }
+          return item
+        })
+      },
     },
   }
 </script>
