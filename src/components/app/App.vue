@@ -12,6 +12,8 @@
     <MovieList 
     :movies="movies" 
     @onLike="onLikeHandler" 
+    @onFavorite="onFavoriteHandler"
+
     />
     <MovieAddForm @createMovie="createMovie" />
   </div>
@@ -64,6 +66,14 @@ import MovieAddForm from "../movie-add-form/MovieAddForm.vue";
         this.movies.push(item)
         console.log(item)
       },
+      onFavoriteHandler(id){
+        this.movies=this.movies.map(item => {
+          if(item.id==id) {
+              item.favorite=!item.favorite
+          }
+          return item
+        })
+      }
       onLikeHandler(id) {
         this.movies=this.movies.map(item => {
           if(item.id==id) {

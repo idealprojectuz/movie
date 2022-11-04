@@ -5,6 +5,7 @@
         v-bind:movie="movie" 
         :key="movie.id" 
         @onLike="$emit('onLike', movie.id)"
+        @onFavorite="$emit('onFavorite', movie.id)"
         />
     </div>
 </template>

@@ -12,8 +12,7 @@
 			<button
 				type="button"
 				class="btn-cookie btn-sm"
-				@click="$emit('onToggle', {id: movie.id, prop: 'favourite'})"
-			>
+				@click="$emit('onToggle', {id: movie.id, prop: 'favourite'})" @click="$emit('onFavorite',movie.id)">
 				<i class="fas fa-cookie"></i>
 			</button>
 
